@@ -4,6 +4,7 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     // Prompt the player for a choice between Rock, Paper, or Scissors
+    return prompt("What is your choice?: (Rock, Paper, Scissors").toLowerCase();
 }
 
 function playRound(playerSelection, computerSelection) {
