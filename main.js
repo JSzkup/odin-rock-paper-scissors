@@ -50,6 +50,25 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     // Plays 5 rounds in a loop keeping score, then prints the results into console
 
-    playRound(getPlayerChoice(), getComputerChoice());
+    let winCount = 0;
+
+    for (let round = 0; round < 5; round++) {
+        let currentRound = playRound(getPlayerChoice(), getComputerChoice());
+
+        console.log(currentRound);
+
+        if (currentRound.includes("Win!")) {
+            ++winCount;
+        } else if (currentRound.includes("Tie!")) {
+            --round;
+        }
+
+    }
+
+    if (5 - winCount <= 2) {
+        console.log("You won the match!");
+    } else {
+        console.log("You lost the match.");
+    }
 }
 
