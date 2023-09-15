@@ -16,25 +16,30 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     // Prompt the player for a choice between Rock, Paper, or Scissors
-    return String(prompt("What is your choice?: (Rock, Paper, Scissors").toLowerCase());
+    return String(prompt("What is your choice?: (Rock, Paper, Scissors)").toLowerCase());
 }
 
 function playRound(playerSelection, computerSelection) {
     // plays a SINGLE round of RPS, returns a string that declares the winner
 
     let isWinner;
+    let tie = false;
 
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        isWinner = True;
+        isWinner = true;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        isWinner = True;
+        isWinner = true;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        isWinner = True;
+        isWinner = true;
+    } else if (playerSelection === computerSelection) {
+        tie = true;
     } else {
-        isWinner = False;
+        isWinner = false;
     }
 
-    if (isWinner) {
+    if (tie) {
+        return `Tie! - You both played ${playerSelection}`
+    } else if (isWinner) {
         return `You Win! - ${playerSelection} beats ${computerSelection}`;
     } else {
         return `You Lose! - ${computerSelection} beats ${playerSelection}`;
