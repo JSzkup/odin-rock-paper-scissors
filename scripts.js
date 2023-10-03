@@ -51,16 +51,26 @@ function playRound(playerSelection, computerSelection) {
         isWinner = false;
     }
 
+    const roundWinnerContainer = document.querySelector('#round-results');
+
+    const roundWinnerContent = document.createElement('div');
+    roundWinnerContent.classList.add('roundWinnerContent');
+
     if (tie) {
         console.log("Tie");
-        return `Tie! - You both played ${playerSelection}`;
+        roundWinnerContent.textContent = `Tie! - You both played ${playerSelection}`;
+        // return `Tie! - You both played ${playerSelection}`;
     } else if (isWinner) {
         console.log("Win");
-        return `You Win! - ${playerSelection} beats ${computerSelection}`;
+        roundWinnerContent.textContent = `You Win! - ${playerSelection} beats ${computerSelection}`;
+        // return `You Win! - ${playerSelection} beats ${computerSelection}`;
     } else {
         console.log("Lose");
-        return `You Lose! - ${computerSelection} beats ${playerSelection}`;
+        roundWinnerContent.textContent = `You Win! - ${playerSelection} beats ${computerSelection}`;
+        // return `You Lose! - ${computerSelection} beats ${playerSelection}`;
     }
+
+    roundWinnerContainer.appendChild(roundWinnerContent);
 
 }
 
@@ -82,15 +92,17 @@ function game() {
 
     // }
 
-    const result = document.createElement('div');
-    result.classList.add('result');
+    // const result = document.createElement('div');
+    // result.classList.add('result');
 
-    if (5 - winCount <= 2) {
-        result.textContent = "You won the match!";
-    } else {
-        result.textContent = "You lost the match.";
-    }
+    // if (5 - winCount <= 2) {
+    //     result.textContent = "You won the match!";
+    // } else {
+    //     result.textContent = "You lost the match.";
+    // }
 }
 
 // TODO research if this is necessary
 window.addEventListener('load', getPlayerChoice);
+// immediately plays a losing round on page load
+// window.addEventListener('load', playRound);
