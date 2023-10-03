@@ -16,7 +16,21 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     // Prompt the player for a choice between Rock, Paper, or Scissors
-    return String(prompt("What is your choice?: (Rock, Paper, Scissors)").toLowerCase());
+
+    const rockBtn = document.getElementById('choice-rock');
+    rockBtn.addEventListener('click', () => {
+        playRound('rock', getComputerChoice());
+    });
+
+    const paperBtn = document.getElementById('choice-paper');
+    paperBtn.addEventListener('click', () => {
+        playRound('paper', getComputerChoice());
+    });
+
+    const scissorsBtn = document.getElementById('choice-scissors');
+    scissorsBtn.addEventListener('click', () => {
+        playRound('scissors', getComputerChoice());
+    });
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -38,10 +52,13 @@ function playRound(playerSelection, computerSelection) {
     }
 
     if (tie) {
-        return `Tie! - You both played ${playerSelection}`
+        console.log("Tie");
+        return `Tie! - You both played ${playerSelection}`;
     } else if (isWinner) {
+        console.log("Win");
         return `You Win! - ${playerSelection} beats ${computerSelection}`;
     } else {
+        console.log("Lose");
         return `You Lose! - ${computerSelection} beats ${playerSelection}`;
     }
 
@@ -52,23 +69,28 @@ function game() {
 
     let winCount = 0;
 
-    for (let round = 0; round < 5; round++) {
-        let currentRound = playRound(getPlayerChoice(), getComputerChoice());
+    // for (let round = 0; round < 5; round++) {
+    //     let currentRound = playRound(getPlayerChoice(), getComputerChoice());
 
-        console.log(currentRound);
+    //     console.log(currentRound);
 
-        if (currentRound.includes("Win!")) {
-            ++winCount;
-        } else if (currentRound.includes("Tie!")) {
-            --round;
-        }
+    //     if (currentRound.includes("Win!")) {
+    //         ++winCount;
+    //     } else if (currentRound.includes("Tie!")) {
+    //         --round;
+    //     }
 
-    }
+    // }
+
+    const result = document.createElement('div');
+    result.classList.add('result');
 
     if (5 - winCount <= 2) {
-        console.log("You won the match!");
+        result.textContent = "You won the match!";
     } else {
-        console.log("You lost the match.");
+        result.textContent = "You lost the match.";
     }
 }
 
+// TODO research if this is necessary
+window.addEventListener('load', getPlayerChoice);
