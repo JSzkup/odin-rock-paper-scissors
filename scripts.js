@@ -4,11 +4,11 @@ function getComputerChoice() {
     let move;
 
     if (randNum >= 0 && randNum <= 33) {
-        move = "rock"
+        move = "rock";
     } else if (randNum >= 34 && randNum <= 66) {
-        move = "paper"
+        move = "paper";
     } else {
-        move = "scissors"
+        move = "scissors";
     }
 
     return move;
