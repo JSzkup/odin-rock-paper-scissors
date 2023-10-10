@@ -12,10 +12,17 @@ const compScoreContent = document.createElement('div');
 compScoreContent.classList.add('compScoreContent');
 compScoreContainer.appendChild(compScoreContent);
 
+playerScoreContent.textContent = "Player: "
+compScoreContent.textContent = "Computer: "
+
 const roundWinnerContainer = document.querySelector('#round-results');
 
 const roundWinnerContent = document.createElement('div');
 roundWinnerContent.classList.add('roundWinnerContent');
+
+roundWinnerContainer.appendChild(roundWinnerContent)
+
+roundWinnerContent.textContent = "Click a button to play."
 
 function getComputerChoice() {
     // Randomly returns either Rock, Paper, or Scissors
