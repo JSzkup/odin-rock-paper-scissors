@@ -33,6 +33,15 @@ function getPlayerChoice() {
     });
 }
 
+function scoreKeeping() {
+
+    // argument boolean(?) or the words win/loss/tie string
+
+    // if win, #player-score + 1
+    // if loss, #comp-score + 1
+    // else, pass
+}
+
 function playRound(playerSelection, computerSelection) {
     // plays a SINGLE round of RPS, returns a string that declares the winner
 
@@ -69,6 +78,9 @@ function playRound(playerSelection, computerSelection) {
         roundWinnerContent.textContent = `You Win! - ${playerSelection} beats ${computerSelection}`;
         // return `You Lose! - ${computerSelection} beats ${playerSelection}`;
     }
+
+
+    // TODO if player-score or comp-score >= 5 conclude game, call out winner
 
     roundWinnerContainer.appendChild(roundWinnerContent);
 
