@@ -1,3 +1,22 @@
+let playerScore = 0;
+let compScore = 0;
+
+const playerScoreContainer = document.querySelector('#player-score');
+const playerScoreContent = document.createElement('div');
+playerScoreContent.classList.add('playerScoreContent');
+playerScoreContainer.appendChild(playerScoreContent);
+
+
+const compScoreContainer = document.querySelector('#comp-score');
+const compScoreContent = document.createElement('div');
+compScoreContent.classList.add('compScoreContent');
+compScoreContainer.appendChild(compScoreContent);
+
+const roundWinnerContainer = document.querySelector('#round-results');
+
+const roundWinnerContent = document.createElement('div');
+roundWinnerContent.classList.add('roundWinnerContent');
+
 function getComputerChoice() {
     // Randomly returns either Rock, Paper, or Scissors
     let randNum = Math.floor(Math.random() * 100);
@@ -33,13 +52,14 @@ function getPlayerChoice() {
     });
 }
 
-function scoreKeeping() {
+function displayScore(outcome) {
 
-    // argument boolean(?) or the words win/loss/tie string
-
-    // if win, #player-score + 1
-    // if loss, #comp-score + 1
-    // else, pass
+    // boolean true is a win, loss is false
+    if (outcome) {
+        playerScoreContent.textContent = `Player: ${++playerScore}`
+    } else {
+        compScoreContent.textContent = `Computer: ${++compScore}`
+    }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -60,36 +80,32 @@ function playRound(playerSelection, computerSelection) {
         isWinner = false;
     }
 
-    const roundWinnerContainer = document.querySelector('#round-results');
-
-    const roundWinnerContent = document.createElement('div');
-    roundWinnerContent.classList.add('roundWinnerContent');
 
     if (tie) {
         console.log("Tie");
         roundWinnerContent.textContent = `Tie! - You both played ${playerSelection}`;
-        // return `Tie! - You both played ${playerSelection}`;
+        // TODO advance round number?
     } else if (isWinner) {
         console.log("Win");
         roundWinnerContent.textContent = `You Win! - ${playerSelection} beats ${computerSelection}`;
-        // return `You Win! - ${playerSelection} beats ${computerSelection}`;
+        displayScore(isWinner);
     } else {
         console.log("Lose");
-        roundWinnerContent.textContent = `You Win! - ${playerSelection} beats ${computerSelection}`;
-        // return `You Lose! - ${computerSelection} beats ${playerSelection}`;
+        roundWinnerContent.textContent = `You Lose - ${playerSelection} beats ${computerSelection}`;
+        displayScore(isWinner);
     }
-
-
-    // TODO if player-score or comp-score >= 5 conclude game, call out winner
 
     roundWinnerContainer.appendChild(roundWinnerContent);
 
+    // TODO run game() to check score for a winner
 }
 
 function game() {
     // Plays 5 rounds in a loop keeping score, then prints the results into console
 
     let winCount = 0;
+
+    // TODO if player-score or comp-score >= 5 conclude game, call out winner
 
     // for (let round = 0; round < 5; round++) {
     //     let currentRound = playRound(getPlayerChoice(), getComputerChoice());
@@ -114,7 +130,4 @@ function game() {
     // }
 }
 
-// TODO research if this is necessary
 window.addEventListener('load', getPlayerChoice);
-// immediately plays a losing round on page load
-// window.addEventListener('load', playRound);
